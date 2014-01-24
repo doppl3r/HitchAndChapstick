@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="HitchAndChapstick">
+    <output-path>$PROJECT_DIR$/out/artifacts/HitchAndChapstick</output-path>
+    <root id="archive" name="HitchAndChapstick.jar">
+      <element id="module-output" name="HitchAndChapstick" />
+    </root>
+  </artifact>
+</component>
