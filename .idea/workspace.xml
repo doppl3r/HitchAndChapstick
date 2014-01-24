@@ -74,7 +74,7 @@
           <file leaf-file-name="Panel.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Panel.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="74" column="41" selection-start="2321" selection-end="2321" vertical-scroll-proportion="1.6918138" vertical-offset="0" max-vertical-offset="3094">
+                <state line="74" column="41" selection-start="2315" selection-end="2315" vertical-scroll-proportion="1.6918138" vertical-offset="0" max-vertical-offset="3094">
                   <folding />
                 </state>
               </provider>
@@ -83,7 +83,7 @@
           <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Player.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="48" column="75" selection-start="1421" selection-end="1421" vertical-scroll-proportion="0.0" vertical-offset="386" max-vertical-offset="1309">
+                <state line="48" column="27" selection-start="1403" selection-end="1403" vertical-scroll-proportion="0.0" vertical-offset="386" max-vertical-offset="1309">
                   <folding />
                 </state>
               </provider>
@@ -96,11 +96,11 @@
           <file leaf-file-name="Window.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Window.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="63" column="23" selection-start="2337" selection-end="2337" vertical-scroll-proportion="1.577044" vertical-offset="0" max-vertical-offset="1632">
+                <state line="13" column="26" selection-start="240" selection-end="240" vertical-scroll-proportion="-1.3254716" vertical-offset="996" max-vertical-offset="1632">
                   <folding>
-                    <element signature="e#2066#2067#0" expanded="true" />
-                    <element signature="e#2090#2091#0" expanded="true" />
-                    <element signature="method#getOriginalHeight#0;class#Window#0" expanded="true" />
+                    <element signature="e#2044#2045#0" expanded="true" />
+                    <element signature="e#2065#2066#0" expanded="true" />
+                    <element signature="method#getPanelHeight#0;class#Window#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -109,7 +109,7 @@
           <file leaf-file-name="EnemyHandler.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/EnemyHandler.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="36" column="64" selection-start="1081" selection-end="1081" vertical-scroll-proportion="0.0" vertical-offset="293" max-vertical-offset="952">
+                <state line="36" column="35" selection-start="1081" selection-end="1081" vertical-scroll-proportion="0.0" vertical-offset="293" max-vertical-offset="952">
                   <folding />
                 </state>
               </provider>
@@ -146,8 +146,8 @@
         <option value="$PROJECT_DIR$/.idea/.name" />
         <option value="$PROJECT_DIR$/src/EnemyHandler.java" />
         <option value="$PROJECT_DIR$/src/Player.java" />
-        <option value="$PROJECT_DIR$/src/Window.java" />
         <option value="$PROJECT_DIR$/src/Panel.java" />
+        <option value="$PROJECT_DIR$/src/Window.java" />
       </list>
     </option>
   </component>
@@ -594,32 +594,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/EnemyHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="64" selection-start="1081" selection-end="1081" vertical-scroll-proportion="0.0" vertical-offset="293" max-vertical-offset="952">
+        <state line="36" column="35" selection-start="1081" selection-end="1081" vertical-scroll-proportion="0.0" vertical-offset="293" max-vertical-offset="952">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="75" selection-start="1421" selection-end="1421" vertical-scroll-proportion="0.0" vertical-offset="386" max-vertical-offset="1309">
+        <state line="48" column="27" selection-start="1403" selection-end="1403" vertical-scroll-proportion="0.0" vertical-offset="386" max-vertical-offset="1309">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Panel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="41" selection-start="2321" selection-end="2321" vertical-scroll-proportion="1.6918138" vertical-offset="0" max-vertical-offset="3094">
+        <state line="74" column="41" selection-start="2315" selection-end="2315" vertical-scroll-proportion="1.6918138" vertical-offset="0" max-vertical-offset="3094">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Window.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="23" selection-start="2337" selection-end="2337" vertical-scroll-proportion="1.577044" vertical-offset="0" max-vertical-offset="1632">
+        <state line="13" column="26" selection-start="240" selection-end="240" vertical-scroll-proportion="-1.3254716" vertical-offset="996" max-vertical-offset="1632">
           <folding>
-            <element signature="e#2066#2067#0" expanded="true" />
-            <element signature="e#2090#2091#0" expanded="true" />
-            <element signature="method#getOriginalHeight#0;class#Window#0" expanded="true" />
+            <element signature="e#2044#2045#0" expanded="true" />
+            <element signature="e#2065#2066#0" expanded="true" />
+            <element signature="method#getPanelHeight#0;class#Window#0" expanded="true" />
           </folding>
         </state>
       </provider>

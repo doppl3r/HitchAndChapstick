@@ -67,7 +67,7 @@ public class Panel extends JPanel implements KeyListener,
         super.paintComponent(g);
 		setBackground(Color.BLACK);
 
-        double ratio = ((double)Window.getOriginalWidth()/(double)Window.getOriginalHeight());
+        double ratio = ((double)Window.getPanelWidth()/(double)Window.getPanelHeight());
 
         int x1 = (int)((Window.getFrameWidth()/2)-((Window.getFrameHeight()*ratio)/2));
         int y1 = 0;
@@ -82,7 +82,7 @@ public class Panel extends JPanel implements KeyListener,
 	}
     public void draw(Graphics2D g){
         g.setColor(Color.WHITE);
-        g.fillRect(0,0,Window.getOriginalWidth(),Window.getOriginalHeight());
+        g.fillRect(0,0,Window.getPanelWidth(),Window.getPanelHeight());
         g.setColor(Color.BLACK);
         g.drawString("fps: "+fps,4,16);
 
@@ -97,7 +97,7 @@ public class Panel extends JPanel implements KeyListener,
         updateFPS(); //updatesfps after drawn completely
     }
     public void doubleBuffer(){
-        buffered = new BufferedImage(Window.getOriginalWidth(),Window.getOriginalHeight(),
+        buffered = new BufferedImage(Window.getPanelWidth(),Window.getPanelHeight(),
             BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = buffered.createGraphics();
         draw(g);

@@ -36,8 +36,8 @@ public class EnemyHandler {
     public void addEnemy(double x, double y, Enemy enemy){
         int index = enemies.size();
         //randomize if specified
-        if (x == -1) x = (int)(Math.random()*Window.getOriginalWidth());
-        if (y == -1) y = (int)(Math.random()*Window.getOriginalHeight());
+        if (x == -1) x = (int)(Math.random()*Window.getPanelWidth());
+        if (y == -1) y = (int)(Math.random()*Window.getPanelHeight());
         enemies.add(enemy);
         enemies.get(index).setXY(x,y);
     }

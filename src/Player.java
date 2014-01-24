@@ -22,8 +22,8 @@ public class Player {
         sprite.center();
         sprite.animate(16); //start looking down
 
-        x = Window.getOriginalWidth()/2;
-        y = Window.getOriginalHeight()/2;
+        x = Window.getPanelWidth()/2;
+        y = Window.getPanelHeight()/2;
         xSpeed = ySpeed = 1.0; //0.5 works
     }
     public void draw(Graphics2D g){
@@ -42,9 +42,9 @@ public class Player {
         if (right) x+=xSpeed*mod;
         //keep in bounds
         if (y < 0) y = 0;
-        else if (y > Window.getOriginalHeight()) y = Window.getOriginalHeight();
+        else if (y > Window.getPanelHeight()) y = Window.getPanelHeight();
         if (x < 0) x = 0;
-        else if (x > Window.getOriginalWidth()) x = Window.getOriginalWidth();
+        else if (x > Window.getPanelWidth()) x = Window.getPanelWidth();
         //update the x value to the sprite
         sprite.update(x,y);
     }

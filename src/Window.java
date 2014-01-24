@@ -10,8 +10,8 @@ public class Window {
     static JFrame jf;
     static Textures tt;
     static Panel panel;
-    static int originalWidth; //stays the same
-    static int originalHeight; //stays the same
+    static int panelWidth; //stays the same
+    static int panelHeight; //stays the same
     static int frameWidth;
     static int frameHeight;
     static int frameExtraWidth;
@@ -32,11 +32,11 @@ public class Window {
         //construct frame and panel
         tt = new Textures();
         jf = new JFrame();
-        originalWidth  = 320;
-        originalHeight = 240;
+        panelWidth = 320;
+        panelHeight = 240;
         //stretched = true;
         panel = new Panel();
-        panel.setPreferredSize(new Dimension(originalWidth, originalHeight));
+        panel.setPreferredSize(new Dimension(panelWidth, panelHeight));
         title = "Hitch and Chapstick - Doppler Indie Games";
         version = "v0.1";
         //build window
@@ -57,8 +57,8 @@ public class Window {
         toggleFullScreen();
         toggleStretched();
     }
-    public static int getOriginalWidth() { return originalWidth; }
-    public static int getOriginalHeight(){ return originalHeight;}
+    public static int getPanelWidth() { return panelWidth; }
+    public static int getPanelHeight(){ return panelHeight;}
     public static int getFrameWidth(){ return frameWidth-frameExtraWidth; }
     public static int getFrameHeight(){ return frameHeight-frameExtraHeight; }
     public static boolean isStretched(){ return stretched; }
@@ -68,8 +68,8 @@ public class Window {
             jf.dispose();
             jf.setUndecorated(false);
             jf.setVisible(true);
-            frameWidth  = originalWidth;
-            frameHeight = originalHeight;
+            frameWidth  = panelWidth;
+            frameHeight = panelHeight;
             fullScreen = false;
             jf.setPreferredSize(new Dimension(frameWidth, frameHeight));
             jf.pack();
