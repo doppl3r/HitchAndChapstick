@@ -26,17 +26,6 @@ public class Enemy {
         //direction
         x += xDirection*mod;
         y += yDirection*mod;
-        //check collision with player
-        if (Math.abs((Window.panel.game.player.getX()/2) - (x/2)) <
-            ((Window.panel.game.player.getWidth())+(sprite.getSpriteWidth()))/2 &&
-            Math.abs((Window.panel.game.player.getY()/2) - (y/2)) <
-            ((Window.panel.game.player.getHeight())+(sprite.getSpriteHeight()))/2){
-            //add blood
-            dead = true;
-            Window.panel.game.blood.add((int)x,(int)y);
-            Window.panel.game.player.addPoint();
-            AudioHandler.THUNK.play();
-        }
 
         sprite.update(x,y);
     }

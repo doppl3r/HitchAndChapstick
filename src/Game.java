@@ -2,37 +2,29 @@ import java.awt.*;
 
 public class Game {
     private boolean gameOver;
-    public Blood blood;
-    public Player player;
-    //public EnemyHandler enemies;
+    private World world;
 
     public Game(){
-        blood = new Blood();
-        player = new Player();
-        //enemies = new EnemyHandler();
+        world = new World();
     }
     public void draw(Graphics2D g){
-        blood.draw(g);
-        //enemies.draw(g);
-        player.draw(g);
+        world.draw(g);
     }
     public void update(double mod){
-        blood.update(mod);
-        player.update(mod);
-        //enemies.update(mod);
+        world.update(mod);
     }
 
     //key pressed
-    public void keyUpPressed(){ player.moveUp(true); }
-    public void keyDownPressed(){ player.moveDown(true); }
-    public void keyLeftPressed(){ player.moveLeft(true); }
-    public void keyRightPressed(){ player.moveRight(true); }
+    public void keyUpPressed(){ world.keyUpPressed(); }
+    public void keyDownPressed(){ world.keyDownPressed(); }
+    public void keyLeftPressed(){ world.keyLeftPressed(); }
+    public void keyRightPressed(){ world.keyRightPressed(); }
 
     //key released
-    public void keyUpReleased(){ player.moveUp(false); }
-    public void keyDownReleased(){ player.moveDown(false); }
-    public void keyLeftReleased(){ player.moveLeft(false); }
-    public void keyRightReleased(){ player.moveRight(false); }
+    public void keyUpReleased(){ world.keyUpReleased(); }
+    public void keyDownReleased(){ world.keyDownReleased(); }
+    public void keyLeftReleased(){ world.keyLeftReleased(); }
+    public void keyRightReleased(){ world.keyRightReleased(); }
 
     //setGameOver
     public void setGameOver(boolean gameOver){ this.gameOver=gameOver; }

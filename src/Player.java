@@ -17,10 +17,10 @@ public class Player {
     private boolean right;
 
     public Player(){
-        sprite = new SpriteSheet(Window.tt.toon,8,4,0.2);
+        sprite = new SpriteSheet(Window.tt.toon,4,4,0.2);
         //sprite.resize(64,64);
         sprite.center();
-        sprite.animate(16); //start looking down
+        sprite.animate(0); //start looking down
 
         x = Window.getPanelWidth()/2;
         y = Window.getPanelHeight()/2;
@@ -31,10 +31,10 @@ public class Player {
     }
     public void update(double mod){
         //animations
-        if (up) sprite.animate(0,8,mod);
+        /*if (up) sprite.animate(0,8,mod);
         else if (right) sprite.animate(8,16,mod);
         else if (down) sprite.animate(16,24,mod);
-        else if (left) sprite.animate(24,32,mod);
+        else if (left) sprite.animate(24,32,mod);*/
         //direction
         if (up) y-=ySpeed*mod;
         if (down) y+=ySpeed*mod;

@@ -1,3 +1,5 @@
+import textures.Resizer;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -74,6 +76,7 @@ public class Panel extends JPanel implements KeyListener,
         int x2 = (int)(Window.getFrameHeight()*ratio);
         int y2 = Window.getFrameHeight();
 
+        //buffered = Resizer.BICUBIC.resize(buffered, Window.getPanelWidth(), Window.getPanelHeight());
         if (Window.isStretched()) g.drawImage(buffered, 0,0,Window.getFrameWidth(),Window.getFrameHeight(),this);
         else g.drawImage(buffered,x1,y1,x2,y2,this); //exact ratio
 
@@ -81,10 +84,8 @@ public class Panel extends JPanel implements KeyListener,
         doubleBuffer();
 	}
     public void draw(Graphics2D g){
-        g.setColor(Color.WHITE);
+        g.setColor(Color.BLACK); //the color of the actual 320x240 game
         g.fillRect(0,0,Window.getPanelWidth(),Window.getPanelHeight());
-        g.setColor(Color.BLACK);
-        g.drawString("fps: "+fps,4,16);
 
         //draw components
         if (!paused){
@@ -94,6 +95,8 @@ public class Panel extends JPanel implements KeyListener,
             }
         }
         gui.draw(g);
+        g.setColor(Color.WHITE);
+        g.drawString("fps: "+fps,2,10);
         updateFPS(); //updatesfps after drawn completely
     }
     public void doubleBuffer(){
