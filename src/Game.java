@@ -27,6 +27,7 @@ public class Game {
     public void keyLeftReleased(){ world.keyLeftReleased(); }
     public void keyRightReleased(){ world.keyRightReleased(); }
     public void keySpaceReleased(){ world.keySpaceReleased(); }
+    public void releaseR(){ world.releaseR(); }
 
     //setGameOver
     public void setGameOver(boolean gameOver){ this.gameOver=gameOver; }

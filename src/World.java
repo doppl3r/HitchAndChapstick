@@ -19,6 +19,8 @@ public class World {
         mapFile = new MapFileReader();
         map = new TileBuffer(blockSize); //16 pixel block size
         map.setMapList(mapFile.convertToTileMap("raw/map1.txt"));
+        player.setSpawn((map.getMap().getCols()*blockSize)/2,
+            (map.getMap().getRows()*blockSize)-(blockSize*2));
     }
     public void draw(Graphics2D g){
         map.draw(g, Window.getPanelWidth(), Window.getPanelHeight(), terrain);
@@ -62,5 +64,7 @@ public class World {
     public void keySpaceReleased(){
         //player.spaceBar(false);
     }
+    //key released
+    public void releaseR(){ player.pressR(); }
     public int getBlockSize(){ return blockSize; }
 }

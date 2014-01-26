@@ -23,6 +23,7 @@ public class Tile {
             case(6): passable=true; break;
             case(7): passable=true; break;
             case(8): passable=true; break;
+            case(16):passable=true; break;
             default: passable=false; break;
         }
     }

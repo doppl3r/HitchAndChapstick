@@ -37,10 +37,14 @@ public class JumpAccelerator {
 	public void set(double digit){
 		x = digit;
 	}
+    public void land(){ x = length/2; } //start at top of fall;
     public double getX(){ return x; }
     public double getY(){ return y; }
     public double getJumpAmount(){
         return (-slope*(Math.pow((x+speed)-length/2,2))+(height))-
                (-slope*(Math.pow((x)  -length/2,2))+(height));
     }
+    public boolean isGrounded(){ return x == length/2; }
+    public boolean isAssending(){ return x < length/2; }
 }
+

@@ -141,6 +141,7 @@ public class Panel extends JPanel implements KeyListener,
                 if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) { game.keyDownReleased(); }
                 if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) { game.keyLeftReleased(); }
                 if (key == KeyEvent.VK_SPACE) { game.keySpaceReleased(); }
+                if (key == KeyEvent.VK_R) { game.releaseR(); }
             break;
         }
     }

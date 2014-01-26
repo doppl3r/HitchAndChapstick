@@ -11,6 +11,8 @@ public class Player {
 
     private double x;
     private double y;
+    private double spawnX;
+    private double spawnY;
     private double xSpeed;
     private double ySpeed;
 
@@ -32,6 +34,7 @@ public class Player {
         aL = new SprintAccelerator(2.0, 0.5, 1.5); //maxX,speed,acceleration
         aR = new SprintAccelerator(2.0, 0.5, 1.5);
         jump = new JumpAccelerator(20.0, 92.0, 0.50); //length,height,speed
+        jump.land();
 
         x = Window.getPanelWidth()/2;
         y = Window.getPanelHeight()/2;
@@ -61,26 +64,66 @@ public class Player {
             jump.accelerate();
             y += (-jump.getJumpAmount());
         }
-        //check right collision
-        for (int i=0; i < Math.abs(aR.getSprintAmount())/blockSize; i+=blockSize){
-            if (Window.panel.game.world.map.getMap().getTile((int)((y+i)/blockSize),
-                (int)((x+i)/blockSize)).isPassable() == false){
-                System.out.println("hey");
+        //check jump collision
+        for (int i=0; i < Math.abs(jump.getJumpAmount()); i+=blockSize){ //scan every section
+            if (jump.isAssending()){ //if jumping up
+                if (!Window.panel.game.world.map.getMap().getTile((int)((y+i-6)/blockSize),(int)((x-3)/blockSize)).isPassable() ||
+                    !Window.panel.game.world.map.getMap().getTile((int)((y+i-6)/blockSize),(int)((x+3)/blockSize)).isPassable()){
+                    y = (((int)(y+i+jump.getJumpAmount()/2)/blockSize)*blockSize)+blockSize-8;
+                    jumping = false;
+                    jump.land();
+                    break;
+                }
+                else jumping = true;
             }
-
+            else {
+                if (!Window.panel.game.world.map.getMap().getTile((int)((y+i+8)/blockSize),(int)((x-3)/blockSize)).isPassable() ||
+                    !Window.panel.game.world.map.getMap().getTile((int)((y+i+8)/blockSize),(int)((x+3)/blockSize)).isPassable()){
+                    y = (((int)(y+jump.getJumpAmount()/2)/blockSize)*blockSize)+8;
+                    jumping = false;
+                    jump.land();
+                    break;
+                }
+                else jumping = true;
+            }
+        }
+        //check right
+        for (int i=0; i < Math.abs(aR.getSprintAmount()); i+=blockSize){ //scan every section
+            if (!Window.panel.game.world.map.getMap().getTile((int)((y+7)/blockSize),(int)((x+i+5)/blockSize)).isPassable() ||
+                !Window.panel.game.world.map.getMap().getTile((int)((y-6)/blockSize),(int)((x+i+5)/blockSize)).isPassable()){
+                x = (((int)(x+aR.getSprintAmount()/2)/blockSize)*blockSize)+blockSize-5;
+                aR.stop();
+                break;
+            }
+        }
+        //check left
+        for (int i=0; i < Math.abs(aL.getSprintAmount()); i+=blockSize){ //scan every section
+            if (!Window.panel.game.world.map.getMap().getTile((int)((y+7)/blockSize),(int)((x-i-5)/blockSize)).isPassable() ||
+                !Window.panel.game.world.map.getMap().getTile((int)((y-6)/blockSize),(int)((x-i-5)/blockSize)).isPassable()){
+                x = (((int)(x-aL.getSprintAmount()/2)/blockSize)*blockSize)+5;
+                aL.stop();
+                break;
+            }
         }
     }
-    public void moveUp(boolean up){ this.up=up; testRespawn(); }
+    public void moveUp(boolean up){ this.up=up; spaceBar(up); }
     public void moveRight(boolean right){ this.right=right; }
     public void moveDown(boolean down){ this.down=down; }
     public void moveLeft(boolean left){ this.left=left; }
-    public void spaceBar(boolean jumping){ this.jumping=jumping; }
+    public void spaceBar(boolean jumping){
+        if (jump.isGrounded() && !this.jumping) jump.reset();
+        this.jumping=jumping;
+    }
+    public void pressR(){ respawn(); }
     public double getX(){ return x; }
     public double getY(){ return y; }
-    public void testRespawn(){
-        jump.reset();
+
+    public void setXY(double x, double y){ this.x=x; this.y=y; }
+    public void setSpawn(double x, double y){ this.x=spawnX=x; this.y=spawnY=y; }
+    public void respawn(){
+        x=spawnX;
+        y=spawnY;
+        jump.land();
         jumping=false;
-        x=Window.getPanelWidth()/2;
-        y=Window.getPanelHeight()/2;
     }
 }
