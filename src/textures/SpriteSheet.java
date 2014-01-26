@@ -71,14 +71,14 @@ public class SpriteSheet {
 		spriteRect.left = (((int)currentFrame)%hFrames)*spriteWidth;
 		spriteRect.right = spriteRect.left + spriteWidth;
 	}
-    public void animate(int start, int end, double mod){ //animates in a given order with a mod variable
+    public void animate(boolean loop, int start, int end, double mod){ //animates in a given order with a mod variable
         end++;
         //animates between a certain frame
         if (currentFrame < start) currentFrame = start;
         if (currentFrame+(rate*mod) < end-1) currentFrame+=(rate*mod);
         else{
             finished = true;
-            currentFrame = start;
+            if (loop) currentFrame = start;
         }
         //adjust sprite location
         spriteRect.top = (((int)currentFrame)/hFrames)*spriteHeight;

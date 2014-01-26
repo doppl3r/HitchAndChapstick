@@ -45,10 +45,11 @@ public class Player {
     }
     public void update(double mod){
         //animations
-        /*if (up) sprite.animate(0,8,mod);
-        else if (right) sprite.animate(8,16,mod);
-        else if (down) sprite.animate(16,24,mod);
-        else if (left) sprite.animate(24,32,mod);*/
+        if (up || jumping) sprite.animate(false,12,16,mod);
+        else if (right) sprite.animate(true,4,8,mod);
+        else if (down) sprite.animate(true,0,0,mod);
+        else if (left) sprite.animate(true,8,12,mod);
+        else sprite.animate(0,4);
         checkCollision(); //for jumps
         sprite.update(Window.getPanelWidth()/2,Window.getPanelHeight()/2);
     }
@@ -67,8 +68,8 @@ public class Player {
         //check jump collision
         for (int i=0; i < Math.abs(jump.getJumpAmount()); i+=blockSize){ //scan every section
             if (jump.isAssending()){ //if jumping up
-                if (!Window.panel.game.world.map.getMap().getTile((int)((y+i-6)/blockSize),(int)((x-3)/blockSize)).isPassable() ||
-                    !Window.panel.game.world.map.getMap().getTile((int)((y+i-6)/blockSize),(int)((x+3)/blockSize)).isPassable()){
+                if (!Window.panel.game.world.map.getMap().getTile((int)((y+i-7)/blockSize),(int)((x-3)/blockSize)).isPassable() ||
+                    !Window.panel.game.world.map.getMap().getTile((int)((y+i-7)/blockSize),(int)((x+3)/blockSize)).isPassable()){
                     y = (((int)(y+i+jump.getJumpAmount()/2)/blockSize)*blockSize)+blockSize-8;
                     jumping = false;
                     jump.land();
@@ -105,11 +106,13 @@ public class Player {
                 break;
             }
         }
+        //check special blocks
+        checkSpecialBlocks(blockSize);
     }
     public void moveUp(boolean up){ this.up=up; spaceBar(up); }
-    public void moveRight(boolean right){ this.right=right; }
+    public void moveRight(boolean right){ this.right=right; if (!right) sprite.animate(false,0,0,0); }
     public void moveDown(boolean down){ this.down=down; }
-    public void moveLeft(boolean left){ this.left=left; }
+    public void moveLeft(boolean left){ this.left=left; if (!left) sprite.animate(false,0,0,0); }
     public void spaceBar(boolean jumping){
         if (jump.isGrounded() && !this.jumping) jump.reset();
         this.jumping=jumping;
@@ -119,11 +122,30 @@ public class Player {
     public double getY(){ return y; }
 
     public void setXY(double x, double y){ this.x=x; this.y=y; }
-    public void setSpawn(double x, double y){ this.x=spawnX=x; this.y=spawnY=y; }
+    public void setSpawn(double x, double y, int blockSize){
+        this.x=spawnX=x;
+        this.y=spawnY=y;
+    }
+    public void fixSpawn(int blockSize){
+        while (!Window.panel.game.world.map.getMap().getTile((int)((y)/blockSize),
+                (int)((x)/blockSize)).isPassable()){
+            y-=blockSize;
+        }
+    }
     public void respawn(){
         x=spawnX;
         y=spawnY;
         jump.land();
         jumping=false;
+    }
+    public void checkSpecialBlocks(int blockSize){
+        int blockID = Window.panel.game.world.map.getMap().getTile((int)((y)/blockSize),(int)((x)/blockSize)).getID();
+        if (blockID > 4 && blockID <= 8) { //checkpoint marker
+            spawnX = x;
+            spawnY = y;
+        }
+        else if (blockID > 8 && blockID <= 12){
+            respawn();
+        }
     }
 }

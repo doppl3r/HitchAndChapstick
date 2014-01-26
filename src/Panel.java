@@ -1,3 +1,4 @@
+import audio.AudioHandler;
 import textures.Resizer;
 
 import java.awt.*;
@@ -40,7 +41,7 @@ public class Panel extends JPanel implements KeyListener,
         gui = new GUI();
 
         //start music
-        //AudioHandler.THEME.clip.loop(-1);
+        AudioHandler.THEME.clip.loop(-1);
 
 		//set listeners and thread
 		addKeyListener(this);
