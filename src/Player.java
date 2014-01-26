@@ -23,6 +23,7 @@ public class Player {
     private boolean left;
     private boolean right;
     private boolean jumping;
+    private boolean fallJump;
 
     public Player(){
         sprite = new SpriteSheet(Window.tt.toon,4,4,0.2);
@@ -82,6 +83,7 @@ public class Player {
                     !Window.panel.game.world.map.getMap().getTile((int)((y+i+8)/blockSize),(int)((x+3)/blockSize)).isPassable()){
                     y = (((int)(y+jump.getJumpAmount()/2)/blockSize)*blockSize)+8;
                     jumping = false;
+                    fallJump = true;
                     jump.land();
                     break;
                 }
@@ -114,7 +116,8 @@ public class Player {
     public void moveDown(boolean down){ this.down=down; }
     public void moveLeft(boolean left){ this.left=left; if (!left) sprite.animate(false,0,0,0); }
     public void spaceBar(boolean jumping){
-        if (jump.isGrounded() && !this.jumping) jump.reset();
+        if (jump.isGrounded() && !this.jumping){ jump.reset(); fallJump=false; }
+        else if (fallJump){ jump.reset(); fallJump=false; }
         this.jumping=jumping;
     }
     public void pressR(){ respawn(); }
@@ -141,6 +144,7 @@ public class Player {
     public void checkSpecialBlocks(int blockSize){
         int blockID = Window.panel.game.world.map.getMap().getTile((int)((y)/blockSize),(int)((x)/blockSize)).getID();
         if (blockID > 4 && blockID <= 8) { //checkpoint marker
+            Window.panel.game.world.map.getMap().setTileID((int)((y)/blockSize),(int)((x)/blockSize),8);
             spawnX = x;
             spawnY = y;
         }

@@ -96,9 +96,9 @@ public class Panel extends JPanel implements KeyListener,
             }
         }
         gui.draw(g);
-        g.setColor(Color.WHITE);
-        g.drawString("fps: "+fps,2,10);
-        updateFPS(); //updatesfps after drawn completely
+        g.setColor(new Color(0,148,255));
+        //g.drawString("fps: "+fps,2,10);
+        updateFPS(); //updates fps after drawn completely
     }
     public void doubleBuffer(){
         buffered = new BufferedImage(Window.getPanelWidth(),Window.getPanelHeight(),
