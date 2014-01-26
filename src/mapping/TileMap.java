@@ -195,6 +195,8 @@ public class TileMap {
         return mapString.toString();
     }
     public Tile getTile(int row, int col){
+        if (row < 0) row = 0; if (row > getRows()-1) row = getRows()-1;
+        if (col < 0) col = 0; if (col > getCols()-1) col = getCols()-1;
         return map.get(index).get(row).get(col);
     }
     //getters

@@ -1,9 +1,14 @@
+import physics.JumpAccelerator;
+import physics.SprintAccelerator;
 import textures.SpriteSheet;
 
 import java.awt.*;
 
 public class Player {
     private SpriteSheet sprite;
+    private SprintAccelerator aL, aR;
+    private JumpAccelerator jump;
+
     private double x;
     private double y;
     private double xSpeed;
@@ -15,12 +20,18 @@ public class Player {
     private boolean down;
     private boolean left;
     private boolean right;
+    private boolean jumping;
 
     public Player(){
         sprite = new SpriteSheet(Window.tt.toon,4,4,0.2);
         //sprite.resize(64,64);
         sprite.center();
         sprite.animate(0); //start looking down
+
+        //physics
+        aL = new SprintAccelerator(2.0, 0.5, 1.5); //maxX,speed,acceleration
+        aR = new SprintAccelerator(2.0, 0.5, 1.5);
+        jump = new JumpAccelerator(20.0, 92.0, 0.50); //length,height,speed
 
         x = Window.getPanelWidth()/2;
         y = Window.getPanelHeight()/2;
@@ -35,39 +46,41 @@ public class Player {
         else if (right) sprite.animate(8,16,mod);
         else if (down) sprite.animate(16,24,mod);
         else if (left) sprite.animate(24,32,mod);*/
-        //direction
-        if (up) y-=ySpeed*mod;
-        if (down) y+=ySpeed*mod;
-        if (left) x-=xSpeed*mod;
-        if (right) x+=xSpeed*mod;
-        //keep in bounds
-        if (y < 0) y = 0;
-        else if (y > Window.getPanelHeight()) y = Window.getPanelHeight();
-        if (x < 0) x = 0;
-        else if (x > Window.getPanelWidth()) x = Window.getPanelWidth();
+        checkCollision(); //for jumps
+        sprite.update(Window.getPanelWidth()/2,Window.getPanelHeight()/2);
+    }
+    public void checkCollision(){
+        int blockSize=Window.panel.game.world.getBlockSize();
         //update the x value to the sprite
-        sprite.update(x,y);
+        if (left){ aL.accelerate(); x -= (aL.getY()); }
+        if (right){ aR.accelerate(); x += (aR.getY()); }
+        //decelerate the player
+        if (!left){ aL.decelerate(); x -= (aL.getY()); }
+        if (!right){ aR.decelerate(); x += (aR.getY()); }
+        if (jumping){
+            jump.accelerate();
+            y += (-jump.getJumpAmount());
+        }
+        //check right collision
+        for (int i=0; i < Math.abs(aR.getSprintAmount())/blockSize; i+=blockSize){
+            if (Window.panel.game.world.map.getMap().getTile((int)((y+i)/blockSize),
+                (int)((x+i)/blockSize)).isPassable() == false){
+                System.out.println("hey");
+            }
+
+        }
     }
-    public void moveUp(boolean up){
-        if (!up) sprite.animate(0);
-        this.up=up;
-    }
-    public void moveRight(boolean right){
-        if (!right) sprite.animate(8);
-        this.right=right;
-    }
-    public void moveDown(boolean down){
-        if (!down) sprite.animate(16);
-        this.down=down;
-    }
-    public void moveLeft(boolean left){
-        if (!left) sprite.animate(24);
-        this.left=left;
-    }
-    public void addPoint(){ score++; }
-    public int getScore(){ return score; }
-    public int getWidth(){ return sprite.getSpriteWidth(); }
-    public int getHeight(){ return sprite.getSpriteHeight(); }
+    public void moveUp(boolean up){ this.up=up; testRespawn(); }
+    public void moveRight(boolean right){ this.right=right; }
+    public void moveDown(boolean down){ this.down=down; }
+    public void moveLeft(boolean left){ this.left=left; }
+    public void spaceBar(boolean jumping){ this.jumping=jumping; }
     public double getX(){ return x; }
     public double getY(){ return y; }
+    public void testRespawn(){
+        jump.reset();
+        jumping=false;
+        x=Window.getPanelWidth()/2;
+        y=Window.getPanelHeight()/2;
+    }
 }

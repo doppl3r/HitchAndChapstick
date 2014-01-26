@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Game {
     private boolean gameOver;
-    private World world;
+    public World world;
 
     public Game(){
         world = new World();
@@ -19,12 +19,14 @@ public class Game {
     public void keyDownPressed(){ world.keyDownPressed(); }
     public void keyLeftPressed(){ world.keyLeftPressed(); }
     public void keyRightPressed(){ world.keyRightPressed(); }
+    public void keySpacePressed(){ world.keySpacePressed(); }
 
     //key released
     public void keyUpReleased(){ world.keyUpReleased(); }
     public void keyDownReleased(){ world.keyDownReleased(); }
     public void keyLeftReleased(){ world.keyLeftReleased(); }
     public void keyRightReleased(){ world.keyRightReleased(); }
+    public void keySpaceReleased(){ world.keySpaceReleased(); }
 
     //setGameOver
     public void setGameOver(boolean gameOver){ this.gameOver=gameOver; }

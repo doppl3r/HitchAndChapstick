@@ -14,9 +14,9 @@ public class MapFileReader {
     private LinkedList<String> stack;
 
     public MapFileReader(){
-        //convertToArray(fileName);
+        //convertToTileMap(fileName);
     }
-    public TileMap convertToArray(String fileName){
+    public TileMap convertToTileMap(String fileName){
         in = getClass().getResourceAsStream(fileName);
         input = new BufferedReader(new InputStreamReader(in));
         stack = new LinkedList<String>();

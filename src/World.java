@@ -6,25 +6,29 @@ import java.awt.*;
 public class World {
     private int mainX;
     private int mainY;
+    private int blockSize;
     private Player player;
-    private TileBuffer map;
     private MapFileReader mapFile;
     private SpriteSheet terrain;
+    public TileBuffer map;
 
     public World(){
+        blockSize = 16;
         player = new Player();
         terrain = new SpriteSheet(Window.tt.terrain,8,8,0.0);
         mapFile = new MapFileReader();
-        map = new TileBuffer(16); //16 pixel block size
-        map.setMapList(mapFile.convertToArray("raw/map1.txt"));
+        map = new TileBuffer(blockSize); //16 pixel block size
+        map.setMapList(mapFile.convertToTileMap("raw/map1.txt"));
     }
     public void draw(Graphics2D g){
         map.draw(g, Window.getPanelWidth(), Window.getPanelHeight(), terrain);
         player.draw(g);
     }
     public void update(double mod){
-        map.update(mainX, mainY, 16, 0, mod);
         player.update(mod);
+        map.update(-player.getX()+(Window.getPanelWidth()/2),
+            -player.getY()+(Window.getPanelHeight()/2), blockSize, 0, mod);
+
     }
     //key pressed
     public void keyUpPressed(){
@@ -39,6 +43,9 @@ public class World {
     public void keyRightPressed(){
         player.moveRight(true);
     }
+    public void keySpacePressed(){
+        player.spaceBar(true);
+    }
     //key released
     public void keyUpReleased(){
         player.moveUp(false);
@@ -52,4 +59,8 @@ public class World {
     public void keyRightReleased(){
         player.moveRight(false);
     }
+    public void keySpaceReleased(){
+        //player.spaceBar(false);
+    }
+    public int getBlockSize(){ return blockSize; }
 }

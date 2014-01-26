@@ -125,6 +125,7 @@ public class Panel extends JPanel implements KeyListener,
                 if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) { game.keyRightPressed(); }
                 if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) { game.keyDownPressed(); }
                 if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) { game.keyLeftPressed(); }
+                if (key == KeyEvent.VK_SPACE) { game.keySpacePressed(); }
                 if (key == KeyEvent.VK_ESCAPE){ Window.toggleFullScreen(); }
                 if (key == KeyEvent.VK_F12){ Window.toggleStretched(); }
            break;
@@ -139,6 +140,7 @@ public class Panel extends JPanel implements KeyListener,
                 if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) { game.keyRightReleased(); }
                 if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) { game.keyDownReleased(); }
                 if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) { game.keyLeftReleased(); }
+                if (key == KeyEvent.VK_SPACE) { game.keySpaceReleased(); }
             break;
         }
     }
