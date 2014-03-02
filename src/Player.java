@@ -26,7 +26,7 @@ public class Player {
     private boolean fallJump;
 
     public Player(){
-        sprite = new SpriteSheet(Window.tt.toon,4,4,0.2);
+        sprite = new SpriteSheet(Window.tt.toon,4,8,0.2);
         //sprite.resize(64,64);
         sprite.center();
         sprite.animate(0); //start looking down
@@ -46,7 +46,10 @@ public class Player {
     }
     public void update(double mod){
         //animations
-        if (up || jumping) sprite.animate(false,12,16,mod);
+        if (up || jumping)      {
+            if (right) sprite.animate(false,12,16,mod);
+            if (left) sprite.animate(false,16,20,mod);
+        }
         else if (right) sprite.animate(true,4,8,mod);
         else if (down) sprite.animate(true,0,0,mod);
         else if (left) sprite.animate(true,8,12,mod);
